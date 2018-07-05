@@ -3,14 +3,14 @@ from urllib.request import urlretrieve
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-downloadDirectory = "download"
+basePath = "./ubiquant/saved/"
 baseUrl = "http://test.ubiquant.com/"
 
 def getAbsoluteURL(baseUrl, source):
     url = baseUrl+source;
     return url
 
-def getDownloadPath(filePath, basePath="./ubiquant/saved/"):
+def getDownloadPath(filePath, basePath):
     path = basePath + filePath
     directory = os.path.dirname(path)
     if not os.path.exists(directory):
@@ -26,8 +26,8 @@ downloadList = bsObj.findAll('a', href=True)[1:]
 for i in range(len(downloadList)):
     filePath = downloadList[i]['href']
     downloadUrl = baseUrl + filePath
-    downloadPath = getDownloadPath(filePath)
+    downloadPath = getDownloadPath(filePath=filePath, basePath=basePath)
     # print(downloadUrl)
     # print(downloadPath)
     urlretrieve(downloadUrl, downloadPath)
-    print(str(i+1)+" out of "+str(len(downloadList))+ " files downloaded.")
+    print("{0} out of {1} files downloaded.".format(i+1, len(downloadList)))
