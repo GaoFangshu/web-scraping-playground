@@ -30,4 +30,4 @@ for i in range(len(downloadList)):
     # print(downloadUrl)
     # print(downloadPath)
     urlretrieve(downloadUrl, downloadPath)
-    print(str(i)+" out of "+str(len(downloadList))+ " files downloaded.")
+    print(str(i+1)+" out of "+str(len(downloadList))+ " files downloaded.")
